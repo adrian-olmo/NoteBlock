@@ -5,6 +5,9 @@ import intefaces.ActionHandler;
 
 import javax.swing.*;
 import java.awt.event.InputEvent;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Objects;
 
 public class CreateMenuItem {
     public JMenuItem createMenuItem(String text, int mnemonic, int keyCode, ActionHandler actionHandler) {
@@ -27,13 +30,5 @@ public class CreateMenuItem {
         item.addActionListener(actionHandler::handle);
         return item;
     }
-    // TODO: REVISAR RUTAS IMAGES
-    /*private JMenuItem createPopupMenuItem(String text, int mnemonic, String iconPath, ActionHandler actionHandler) {
-        JMenuItem item = new JMenuItem(text);
-        item.setMnemonic(mnemonic);
-        item.addActionListener(actionHandler::handle);
-        item.setIcon(new ImageIcon(getClass().getResource(iconPath))); // Cargar el icono desde el recurso
-        return item;
-    }*/
 
 }
