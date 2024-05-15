@@ -55,7 +55,7 @@ public class EditorTextManager extends Component{
         }
     }
 
-    // TODO: REVISAR FUNCIONES UNDO Y REDO
+    
     public void undo(){
           try {
               if (NoteBlock.doManager != null && NoteBlock.doManager.canUndo()){
