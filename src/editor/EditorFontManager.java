@@ -7,7 +7,7 @@ import java.awt.*;
 public class EditorFontManager {
 
     public void changeFontSize() {
-        for (int i = 15; i <= 50; i++) {
+        for (int i = 20; i <= 50; i++) {
             NoteBlock.sizeModel.addElement(i);
         }
     }
