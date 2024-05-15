@@ -67,37 +67,51 @@ public class NoteBlock extends JFrame implements ItemListener, NoteOpener, NoteC
     private JMenu createFileMenu() {
         JMenu fileMenu = new JMenu("Archivo");
         fileMenu.add(createMenuItem.createMenuItem("Nuevo", KeyEvent.VK_N, KeyEvent.VK_N, e -> openNewNoteWindow()));
-        fileMenu.add(createMenuItem.createMenuItem("Abrir", KeyEvent.VK_A, KeyEvent.VK_A, e -> new EditorFileManager().openFile(textArea)));
-        fileMenu.add(createMenuItem.createMenuItem("Guardar", KeyEvent.VK_G, KeyEvent.VK_S, e -> new EditorFileManager().saveFile(textArea)));
+        fileMenu.add(createMenuItem.createMenuItem("Abrir", KeyEvent.VK_A, KeyEvent.VK_A,
+                e -> new EditorFileManager().openFile(textArea)));
+        fileMenu.add(createMenuItem.createMenuItem("Guardar", KeyEvent.VK_G, KeyEvent.VK_S,
+                e -> new EditorFileManager().saveFile(textArea)));
         fileMenu.add(createMenuItem.createMenuItem("Salir", KeyEvent.VK_P, KeyEvent.VK_P, e -> closeNoteWindow()));
         return fileMenu;
     }
 
     private JMenu createEditMenu() {
         JMenu editMenu = new JMenu("Edición");
-        editMenu.add(createMenuItem.createMenuItem("Cortar", KeyEvent.VK_X, KeyEvent.VK_X, e -> new EditorTextManager().cutText()));
-        editMenu.add(createMenuItem.createMenuItem("Copiar", KeyEvent.VK_C, KeyEvent.VK_C, e -> new EditorTextManager().copyText()));
-        editMenu.add(createMenuItem.createMenuItem("Pegar", KeyEvent.VK_V, KeyEvent.VK_V, e -> new EditorTextManager().pasteText()));
-        editMenu.add(createMenuItem.createMenuItem("Deshacer", KeyEvent.VK_Z, KeyEvent.VK_Z, e -> new EditorTextManager().undo()));
-        editMenu.add(createMenuItem.createMenuItem("Rehacer", KeyEvent.VK_Y, KeyEvent.VK_Y, e -> new EditorTextManager().redo()));
+        editMenu.add(createMenuItem.createMenuItem("Cortar", KeyEvent.VK_X, KeyEvent.VK_X,
+                e -> new EditorTextManager().cutText()));
+        editMenu.add(createMenuItem.createMenuItem("Copiar", KeyEvent.VK_C, KeyEvent.VK_C,
+                e -> new EditorTextManager().copyText()));
+        editMenu.add(createMenuItem.createMenuItem("Pegar", KeyEvent.VK_V, KeyEvent.VK_V,
+                e -> new EditorTextManager().pasteText()));
+        editMenu.add(createMenuItem.createMenuItem("Deshacer", KeyEvent.VK_Z, KeyEvent.VK_Z,
+                e -> new EditorTextManager().undo()));
+        editMenu.add(createMenuItem.createMenuItem("Rehacer", KeyEvent.VK_Y, KeyEvent.VK_Y,
+                e -> new EditorTextManager().redo()));
         return editMenu;
     }
 
-    private JMenu createAboutMenu(){
+    private JMenu createAboutMenu() {
         JMenu aboutMenu = new JMenu("Acerca De");
-        aboutMenu.add(createMenuItem.createMenuItem("Github", e -> EditorAboutManager.openGithubPage("https://github.com/adrian-olmo")));
-        aboutMenu.add(createMenuItem.createMenuItem("LinkedIn", e -> EditorAboutManager.openGithubPage("https://www.linkedin.com/in/adrian-olmo/")));
+        aboutMenu.add(createMenuItem.createMenuItem("Github",
+                e -> EditorAboutManager.openGithubPage("https://github.com/adrian-olmo")));
+        aboutMenu.add(createMenuItem.createMenuItem("LinkedIn",
+                e -> EditorAboutManager.openGithubPage("https://www.linkedin.com/in/adrian-olmo/")));
         return aboutMenu;
     }
 
-    private void createPopUpMenu(){
+    private void createPopUpMenu() {
         JPopupMenu popupMenu = new JPopupMenu();
 
-        popupMenu.add(createMenuItem.createPopupMenuItem("Cortar", KeyEvent.VK_X, e -> new EditorTextManager().cutText()));
-        popupMenu.add(createMenuItem.createPopupMenuItem("Copiar", KeyEvent.VK_C, e -> new EditorTextManager().copyText()));
-        popupMenu.add(createMenuItem.createPopupMenuItem("Pegar", KeyEvent.VK_V, e -> new EditorTextManager().pasteText()));
-        popupMenu.add(createMenuItem.createPopupMenuItem("Deshacer", KeyEvent.VK_V, e -> new EditorTextManager().pasteText()));
-        popupMenu.add(createMenuItem.createPopupMenuItem("Guardar", KeyEvent.VK_G, e -> new EditorFileManager().saveFile(textArea)));
+        popupMenu.add(
+                createMenuItem.createPopupMenuItem("Cortar", KeyEvent.VK_X, e -> new EditorTextManager().cutText()));
+        popupMenu.add(
+                createMenuItem.createPopupMenuItem("Copiar", KeyEvent.VK_C, e -> new EditorTextManager().copyText()));
+        popupMenu.add(
+                createMenuItem.createPopupMenuItem("Pegar", KeyEvent.VK_V, e -> new EditorTextManager().pasteText()));
+        popupMenu.add(createMenuItem.createPopupMenuItem("Deshacer", KeyEvent.VK_V,
+                e -> new EditorTextManager().pasteText()));
+        popupMenu.add(createMenuItem.createPopupMenuItem("Guardar", KeyEvent.VK_G,
+                e -> new EditorFileManager().saveFile(textArea)));
 
         textArea.setComponentPopupMenu(popupMenu);
     }
