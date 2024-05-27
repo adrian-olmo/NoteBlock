@@ -5,8 +5,8 @@ import java.awt.*;
 import editor.*;
 import intefaces.*;
 import javax.swing.*;
-import menu.CreateMenuItem;
 import java.awt.event.*;
+import menu.CreateMenuItem;
 import javax.swing.undo.UndoManager;
 
 public class NoteBlock extends JFrame implements ItemListener, NoteOpener, NoteCloser {
@@ -59,7 +59,7 @@ public class NoteBlock extends JFrame implements ItemListener, NoteOpener, NoteC
     private void setupMenu() {
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(createFileMenu());
-        menuBar.add(createEditMenu());
+        menuBar.add(createMenuItem.createEditMenu());
         menuBar.add(createAboutMenu());
         setJMenuBar(menuBar);
     }
@@ -73,21 +73,6 @@ public class NoteBlock extends JFrame implements ItemListener, NoteOpener, NoteC
                 e -> new EditorFileManager().saveFile(textArea)));
         fileMenu.add(createMenuItem.createMenuItem("Salir", KeyEvent.VK_P, KeyEvent.VK_P, e -> closeNoteWindow()));
         return fileMenu;
-    }
-
-    private JMenu createEditMenu() {
-        JMenu editMenu = new JMenu("Edición");
-        editMenu.add(createMenuItem.createMenuItem("Cortar", KeyEvent.VK_X, KeyEvent.VK_X,
-                e -> new EditorTextManager().cutText()));
-        editMenu.add(createMenuItem.createMenuItem("Copiar", KeyEvent.VK_C, KeyEvent.VK_C,
-                e -> new EditorTextManager().copyText()));
-        editMenu.add(createMenuItem.createMenuItem("Pegar", KeyEvent.VK_V, KeyEvent.VK_V,
-                e -> new EditorTextManager().pasteText()));
-        editMenu.add(createMenuItem.createMenuItem("Deshacer", KeyEvent.VK_Z, KeyEvent.VK_Z,
-                e -> new EditorTextManager().undo()));
-        editMenu.add(createMenuItem.createMenuItem("Rehacer", KeyEvent.VK_Y, KeyEvent.VK_Y,
-                e -> new EditorTextManager().redo()));
-        return editMenu;
     }
 
     private JMenu createAboutMenu() {

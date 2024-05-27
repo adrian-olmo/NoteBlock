@@ -1,13 +1,12 @@
 
 package menu;
 
+import editor.EditorTextManager;
 import intefaces.ActionHandler;
 
 import javax.swing.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Objects;
 
 public class CreateMenuItem {
     public JMenuItem createMenuItem(String text, int mnemonic, int keyCode, ActionHandler actionHandler) {
@@ -31,4 +30,18 @@ public class CreateMenuItem {
         return item;
     }
 
+    public JMenu createEditMenu() {
+        JMenu editMenu = new JMenu("Edición");
+        editMenu.add(createMenuItem("Cortar", KeyEvent.VK_X, KeyEvent.VK_X,
+                e -> new EditorTextManager().cutText()));
+        editMenu.add(createMenuItem("Copiar", KeyEvent.VK_C, KeyEvent.VK_C,
+                e -> new EditorTextManager().copyText()));
+        editMenu.add(createMenuItem("Pegar", KeyEvent.VK_V, KeyEvent.VK_V,
+                e -> new EditorTextManager().pasteText()));
+        editMenu.add(createMenuItem("Deshacer", KeyEvent.VK_Z, KeyEvent.VK_Z,
+                e -> new EditorTextManager().undo()));
+        editMenu.add(createMenuItem("Rehacer", KeyEvent.VK_Y, KeyEvent.VK_Y,
+                e -> new EditorTextManager().redo()));
+        return editMenu;
+    }
 }
