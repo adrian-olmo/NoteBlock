@@ -1,12 +1,12 @@
 package ui;
 
-import java.awt.*;
-
+import menu.*;
+import config.*;
 import editor.*;
+import java.awt.*;
 import intefaces.*;
 import javax.swing.*;
 import java.awt.event.*;
-import menu.CreateMenuItem;
 import javax.swing.undo.UndoManager;
 
 public class NoteBlock extends JFrame implements ItemListener, NoteOpener, NoteCloser {
@@ -17,9 +17,11 @@ public class NoteBlock extends JFrame implements ItemListener, NoteOpener, NoteC
     public static DefaultComboBoxModel<String> fontModel;
     public static UndoManager doManager = new UndoManager();
     CreateMenuItem createMenuItem;
+    ConfigManager configManager;
 
     public NoteBlock() {
         createMenuItem = new CreateMenuItem();
+        configManager = new ConfigManager("src/url.properties");
         initializeComponents();
         setupUI();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -67,20 +69,21 @@ public class NoteBlock extends JFrame implements ItemListener, NoteOpener, NoteC
     private JMenu createFileMenu() {
         JMenu fileMenu = new JMenu("Archivo");
         fileMenu.add(createMenuItem.createMenuItem("Nuevo", KeyEvent.VK_N, KeyEvent.VK_N, e -> openNewNoteWindow()));
-        fileMenu.add(createMenuItem.createMenuItem("Abrir", KeyEvent.VK_A, KeyEvent.VK_A,
-                e -> new EditorFileManager().openFile(textArea)));
-        fileMenu.add(createMenuItem.createMenuItem("Guardar", KeyEvent.VK_G, KeyEvent.VK_S,
-                e -> new EditorFileManager().saveFile(textArea)));
+        fileMenu.add(createMenuItem.createMenuItem("Abrir", KeyEvent.VK_A, KeyEvent.VK_A, e -> new EditorFileManager().openFile(textArea)));
+        fileMenu.add(createMenuItem.createMenuItem("Guardar", KeyEvent.VK_G, KeyEvent.VK_S, e -> new EditorFileManager().saveFile(textArea)));
         fileMenu.add(createMenuItem.createMenuItem("Salir", KeyEvent.VK_P, KeyEvent.VK_P, e -> closeNoteWindow()));
         return fileMenu;
     }
 
     private JMenu createAboutMenu() {
         JMenu aboutMenu = new JMenu("Acerca De");
+        String githubURL = configManager.getProperty("url_github");
+        String linkedinURL = configManager.getProperty("url_linkedin");
+
         aboutMenu.add(createMenuItem.createMenuItem("Github",
-                e -> EditorAboutManager.openGithubPage("https://github.com/adrian-olmo")));
+                e -> EditorAboutManager.openGithubPage(githubURL)));
         aboutMenu.add(createMenuItem.createMenuItem("LinkedIn",
-                e -> EditorAboutManager.openGithubPage("https://www.linkedin.com/in/adrian-olmo/")));
+                e -> EditorAboutManager.openGithubPage(linkedinURL)));
         return aboutMenu;
     }
 
@@ -93,10 +96,10 @@ public class NoteBlock extends JFrame implements ItemListener, NoteOpener, NoteC
                 createMenuItem.createPopupMenuItem("Copiar", KeyEvent.VK_C, e -> new EditorTextManager().copyText()));
         popupMenu.add(
                 createMenuItem.createPopupMenuItem("Pegar", KeyEvent.VK_V, e -> new EditorTextManager().pasteText()));
-        popupMenu.add(createMenuItem.createPopupMenuItem("Deshacer", KeyEvent.VK_V,
-                e -> new EditorTextManager().pasteText()));
-        popupMenu.add(createMenuItem.createPopupMenuItem("Guardar", KeyEvent.VK_G,
-                e -> new EditorFileManager().saveFile(textArea)));
+        popupMenu.add(
+                createMenuItem.createPopupMenuItem("Deshacer", KeyEvent.VK_V, e -> new EditorTextManager().undo()));
+        popupMenu.add(
+                createMenuItem.createPopupMenuItem("Guardar", KeyEvent.VK_G, e -> new EditorFileManager().saveFile(textArea)));
 
         textArea.setComponentPopupMenu(popupMenu);
     }
