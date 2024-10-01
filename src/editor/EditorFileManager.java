@@ -1,12 +1,12 @@
 package editor;
 
-import java.io.*;
 import javax.swing.*;
+import java.io.*;
 
 public class EditorFileManager {
 
     /** GUARDAR EL CONTENIDO DEL ÁREA DE TEXTO EN UN ARCHIVO
-    * @param texto Contiene el texto a guardar.
+    * @param text Contiene el texto a guardar.
     * @apiNote
     * - Crear y mostrar el cuadro de diálogo para seleccionar la ubicación y el nombre del archivo.
     * - Verificar si el usuario seleccionó un archivo para guardar.
@@ -14,16 +14,34 @@ public class EditorFileManager {
     * - Intentar escribir el contenido del área de texto en el archivo seleccionado.
     * - Manejar cualquier excepción de E/S mostrando la traza de la pila.
     */
-
-    public void saveFile(JTextArea texto) {
+    public void saveFile(JTextArea text) {
         JFileChooser fileChooser = new JFileChooser();
-        int resultado = fileChooser.showSaveDialog(null);
-        if (resultado != JFileChooser.APPROVE_OPTION) {
+        fileChooser.setDialogTitle("Guardar archivo");
+
+        int result = fileChooser.showSaveDialog(null);
+        if (result != JFileChooser.APPROVE_OPTION) {
             return; // El usuario canceló la operación
         }
-        File archivo = fileChooser.getSelectedFile();
-        try (BufferedWriter salida = new BufferedWriter(new FileWriter(archivo))) {
-            salida.write(texto.getText());
+
+        File file = fileChooser.getSelectedFile();
+
+        // Agregar la extensión .txt si no está presente
+        if (!file.getName().endsWith(".txt")) {
+            file = new File(file.getAbsolutePath() + ".txt");
+        }
+
+        // Preguntar si desea sobrescribir el archivo si ya existe
+        if (file.exists()) {
+            int overwrite = JOptionPane.showConfirmDialog(null,
+                "El archivo ya existe. ¿Desea sobrescribirlo?", "Confirmar",
+                JOptionPane.YES_NO_OPTION);
+            if (overwrite != JOptionPane.YES_OPTION) {
+                return; // El usuario no desea sobrescribir el archivo
+            }
+        }
+
+        try (BufferedWriter output = new BufferedWriter(new FileWriter(file))) {
+            output.write(text.getText());
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -38,23 +56,21 @@ public class EditorFileManager {
      */
     public void openFile(JTextArea textArea) {
         JFileChooser fileChooser = new JFileChooser();
-        int resultado = fileChooser.showOpenDialog(null);
-        if (resultado == JFileChooser.APPROVE_OPTION) {
-            File archivo = fileChooser.getSelectedFile();
-            try (BufferedReader entrada = new BufferedReader(new FileReader(archivo))) {
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            try (BufferedReader input = new BufferedReader(new FileReader(file))) {
                 // Leer el contenido del archivo línea por línea
-                StringBuilder contenido = new StringBuilder();
-                String linea;
-                while ((linea = entrada.readLine()) != null) {
-                    contenido.append(linea).append("\n"); // Agregar cada línea al contenido
+                StringBuilder content = new StringBuilder();
+                String line;
+                while ((line = input.readLine()) != null) {
+                    content.append(line).append("\n"); // Agregar cada línea al contenido
                 }
                 // Establecer el contenido del JTextArea con el contenido del archivo
-                textArea.setText(contenido.toString());
+                textArea.setText(content.toString());
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
     }
-
-
 }
