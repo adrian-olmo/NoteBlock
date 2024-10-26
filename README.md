@@ -10,6 +10,15 @@ NoteBlock es una aplicación de escritorio que funciona como un bloc de notas. P
 - **Configuración de fuente**: Cambia el tamaño y el tipo de fuente del texto.
 - **Menú "Acerca de"**: Información sobre el proyecto y enlaces a perfiles sociales.
 
+## Próximas Actualizaciones
+
+En futuras versiones, se planea implementar las siguientes características:
+
+- **Búsqueda de texto**: Implementar una función para buscar texto dentro de las notas.
+- **Soporte para múltiples pestañas**: Permitir abrir varias notas al mismo tiempo en diferentes pestañas.
+- **Personalización del tema**: Opción para cambiar entre diferentes temas de color (claro y oscuro).
+- **Autoguardado**: Implementar un sistema de autoguardado para evitar la pérdida de datos.
+- **Formato de texto enriquecido**: Permitir a los usuarios aplicar formato (negrita, cursiva, subrayado) al texto.
 
 
 ## Instalación
