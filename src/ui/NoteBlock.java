@@ -3,6 +3,8 @@ package ui;
 import menu.*;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.undo.UndoManager;
+
 import editor.EditorFontManager;
 
 import java.awt.event.ItemEvent;
@@ -15,9 +17,12 @@ public class NoteBlock extends JFrame implements ItemListener {
     public static JComboBox<String> fontFamily;
     public static DefaultComboBoxModel<Integer> sizeModel;
     public static DefaultComboBoxModel<String> fontModel;
-    public static FileMenuManager fileMenuManager;
-    public static EditMenuManager editMenuManager;
-    public static AboutMenuCreator aboutMenuCreator;
+    FileMenuManager fileMenuManager;
+    EditMenuManager editMenuManager;
+    AboutMenuCreator aboutMenuCreator;
+    public static UndoManager undoManager = new UndoManager();
+
+
 
     public NoteBlock(){
         fileMenuManager = new FileMenuManager();
