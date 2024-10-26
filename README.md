@@ -1,3 +1,5 @@
+ ![Badge en Desarollo](https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green)
+
 # NoteBlock - Bloc de Notas
 
 NoteBlock es una aplicación de escritorio que funciona como un bloc de notas. Permite a los usuarios crear, editar, guardar y abrir notas de texto con una interfaz simple y amigable. La aplicación está desarrollada en Java utilizando Swing para la interfaz gráfica.
