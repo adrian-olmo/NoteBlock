@@ -75,6 +75,7 @@ public class NoteBlock extends JFrame implements ItemListener {
     private void setupListeners () {
         fontSize.addItemListener(this);
         fontFamily.addItemListener(this);
+        textArea.getDocument().addUndoableEditListener(e -> undoManager.addEdit(e.getEdit()));
     }
 
     private void setUpTopPanel (JPanel topPanel) {

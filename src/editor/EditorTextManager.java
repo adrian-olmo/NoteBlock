@@ -57,8 +57,8 @@ public class EditorTextManager extends Component{
 
     public void undo(){
           try {
-              if (NoteBlock.doManager != null && NoteBlock.doManager.canUndo()){
-                  NoteBlock.doManager.undo();
+              if (NoteBlock.undoManager != null && NoteBlock.undoManager.canUndo()){
+                  NoteBlock.undoManager.undo();
               }
           } catch (CannotUndoException exception){
               exception.printStackTrace();
@@ -67,8 +67,8 @@ public class EditorTextManager extends Component{
 
     public void redo() {
         try {
-            if (NoteBlock.doManager != null && NoteBlock.doManager.canRedo()){
-                NoteBlock.doManager.redo();
+            if (NoteBlock.undoManager != null && NoteBlock.undoManager.canRedo()){
+                NoteBlock.undoManager.redo();
             }
         } catch (CannotRedoException exception){
             exception.printStackTrace();
