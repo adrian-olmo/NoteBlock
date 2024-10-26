@@ -28,3 +28,7 @@ En futuras versiones, se planea implementar las siguientes características:
 1. **Clonar el repositorio**:
    ```bash
    git clone https://github.com/adrian-olmo/note-block.git
+
+## Variables de entorno
+> [!NOTE]
+> Pendiente de Actualizar
