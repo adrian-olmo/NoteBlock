@@ -1,9 +1,10 @@
 package ui;
 
+import menu.*;
+import java.awt.*;
+import javax.swing.*;
 import editor.EditorFontManager;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -14,8 +15,14 @@ public class NoteBlock extends JFrame implements ItemListener {
     public static JComboBox<String> fontFamily;
     public static DefaultComboBoxModel<Integer> sizeModel;
     public static DefaultComboBoxModel<String> fontModel;
+    public static FileMenuManager fileMenuManager;
+    public static EditMenuManager editMenuManager;
+    public static AboutMenuCreator aboutMenuCreator;
 
     public NoteBlock(){
+        fileMenuManager = new FileMenuManager();
+        editMenuManager = new EditMenuManager();
+        aboutMenuCreator = new AboutMenuCreator();
         initComponents();
         initGUI();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -27,6 +34,7 @@ public class NoteBlock extends JFrame implements ItemListener {
         setLocationRelativeTo(null);
         setVisible(true);
         addComponents();
+        setupMenu();
         setupListeners();
     }
 
@@ -49,6 +57,14 @@ public class NoteBlock extends JFrame implements ItemListener {
 
         container.add(topPanel, BorderLayout.NORTH);
         container.add(textPanel, BorderLayout.CENTER);
+    }
+
+    private void setupMenu () {
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.add(fileMenuManager.createFileMenu(this)); // Pasa una referencia a NoteBlock
+        menuBar.add(editMenuManager.createEditMenu());
+        menuBar.add(aboutMenuCreator.createAboutMenu());
+        setJMenuBar(menuBar);
     }
 
     private void setupListeners () {
