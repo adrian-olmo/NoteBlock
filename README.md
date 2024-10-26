@@ -1,4 +1,6 @@
- ![Badge en Desarollo](https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green)
+![Static Badge](https://img.shields.io/badge/En%20Desarrollo-88ff4d?style=for-the-badge&label=Status&labelColor=black)
+
+![Static Badge](https://img.shields.io/badge/Java-cc2900?style=for-the-badge&logo=Java&labelColor=black)
 
 # NoteBlock - Bloc de Notas
 
