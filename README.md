@@ -16,4 +16,4 @@ NoteBlock es una aplicación de escritorio que funciona como un bloc de notas. P
 
 1. **Clonar el repositorio**:
    ```bash
-   git clone https://github.com/adrian-olmo/note-block.git
+   git clone https://github.com/adrian-olmo/note-block.git](https://github.com/adrian-olmo/NoteBlock.git
