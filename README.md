@@ -23,6 +23,7 @@ En futuras versiones, se planea implementar las siguientes características:
 - **Personalización del tema**: Opción para cambiar entre diferentes temas de color (claro y oscuro).
 - **Autoguardado**: Implementar un sistema de autoguardado para evitar la pérdida de datos.
 - **Formato de texto enriquecido**: Permitir a los usuarios aplicar formato (negrita, cursiva, subrayado) al texto.
+- **Agregar menu popUp**: Implementar un menu emergente al dar click derecho con el ratón
 
 
 ## Instalación
