@@ -1,5 +1,7 @@
 package editor;
 
+import lang.Messages;
+
 import javax.swing.*;
 import java.io.*;
 
@@ -16,7 +18,7 @@ public class EditorFileManager {
     */
     public void saveFile(JTextArea text) {
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Guardar archivo");
+        fileChooser.setDialogTitle(Messages.SAVE_FILE.getText());
 
         int result = fileChooser.showSaveDialog(null);
         if (result != JFileChooser.APPROVE_OPTION) {

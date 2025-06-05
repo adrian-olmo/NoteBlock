@@ -19,4 +19,8 @@ public class MenuItemCreator {
         item.addActionListener(actionHandler::handle);
         return item;
     }
+
+    public static JMenuItem createMenuItem(String text) {
+        return new JMenuItem(text);
+    }
 }
