@@ -3,13 +3,15 @@ package menu;
 import javax.swing.*;
 import config.ConfigManager;
 import editor.EditorAboutManager;
+import lang.Messages;
+import ui.NoteBlock;
 
 public class AboutMenuCreator {
 
     private final ConfigManager configManager = new ConfigManager("src/url.properties");
 
     public JMenu createAboutMenu () {
-        JMenu aboutMenu = new JMenu("Acerca De");
+        JMenu aboutMenu = new JMenu(Messages.ABOUT.getText());
         String githubURL = configManager.getProperty("url_github");
         String linkedInURL = configManager.getProperty("url_linkedin");
 
